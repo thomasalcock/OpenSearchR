@@ -1,0 +1,25 @@
+Package: OpenSearchR
+Type: Package
+Title: An R Interface to the OpenSearch API
+Version: 0.1.0
+Author: Thomas Alcock
+Maintainer: Thomas Alcock <thomas.alcock@statworx.com>
+Description: The package enables R users to interact with the OpenSearch
+    REST API and perform standard functions, such as CRUD operations and
+    full text searches.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Suggests: 
+    devtools,
+    renv,
+    roxygen2,
+    testthat,
+    usethis (>= 2.1.6)
+Remotes: 
+    r-lib/usethis
+Imports: 
+    httr (>= 1.4.4)
+RoxygenNote: 7.2.1
+Depends: 
+    R (>= 2.10)
