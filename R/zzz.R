@@ -1,5 +1,5 @@
 .onAttach <- function(libname, pkgname) {
-  packageStartupMessage("OpenSearchR version: ", packageVersion("OpenSearchR"))
+  packageStartupMessage("OpenSearchR version: ", utils::packageVersion("OpenSearchR"))
   httr::set_config(
     httr::config(
       ssl_verifypeer = 0L,
