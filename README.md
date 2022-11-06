@@ -10,8 +10,9 @@ OpenSearchR provides an R interface to the OpenSearch API.
 
 You can install the development version of OpenSearchR like so:
 
-``` r
-remotes::install_github()
+```
+# install.packages("remotes")
+remotes::install_github("thomasalcock/OpenSearchR")
 ```
 
 ## Start an instance of OpenSearch
@@ -39,7 +40,7 @@ check_cluster_health(conn)
 create_index(conn, "myindex")
 
 # check if the index exists
-index_exists(oc, "myindex")
+index_exists(conn, "myindex")
 
 # write a document to the index
 write_document(conn, "myindex", document = list(hello = "world"))
