@@ -7,6 +7,8 @@
 #' @param index `character`, the name of the index
 #'
 #' @return `integer` the response status code
+#' @importFrom httr HEAD authenticate
+#'
 #' @export
 index_exists <- function(conn, index) {
 

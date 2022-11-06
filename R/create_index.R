@@ -7,6 +7,9 @@
 #' @param index `character`, the name of the index
 #'
 #' @return `integer`, the status code of the response
+#'
+#' @importFrom httr PUT authenticate
+#'
 #' @export
 #'
 create_index <- function(conn, index) {

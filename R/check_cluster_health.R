@@ -17,6 +17,8 @@
 #' @param wait_for_status `character`
 #'
 #' @return `list`, the API response containing the status of the cluster
+#' @importFrom httr GET authenticate
+#'
 #' @export
 #'
 check_cluster_health <- function(conn,

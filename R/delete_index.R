@@ -7,6 +7,7 @@
 #' @param index `character`, the name of the index
 #'
 #' @return `list`, the content of the API response
+#' @importFrom httr DELETE authenticate
 #' @export
 delete_index <- function(conn, index) {
   response <- httr::DELETE(
