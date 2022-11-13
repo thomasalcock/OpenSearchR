@@ -1,14 +1,12 @@
 #' Check if index exists
 #'
-#' This function checks if the specified index exists, in which case the
-#' status code of 200 is displayed.
+#' This function checks if the specified index exists. If it does not exist,
+#' an error is thrown.
 #'
 #' @param conn `OpenSearchRConnection`, a connection object
 #' @param index `character`, the name of the index
-#'
-#' @return `integer` the response status code
+#' @return `TRUE` if the index exists
 #' @importFrom httr HEAD authenticate
-#'
 #' @export
 index_exists <- function(conn, index) {
 
@@ -23,5 +21,13 @@ index_exists <- function(conn, index) {
     port = conn$port,
     path = index
   )
-  show_status_code(response)
+  resp <- process_response(response)
+  if(response$status %in% c(200, 201)) {
+    message(sprintf("Index %s exists!", index))
+    return(TRUE)
+  }
+  else {
+    message(resp$error$reason)
+    return(FALSE)
+  }
 }

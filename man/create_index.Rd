@@ -12,9 +12,9 @@ create_index(conn, index)
 \item{index}{`character`, the name of the index}
 }
 \value{
-`integer`, the status code of the response
+`logical`, TRUE if the index was created
 }
 \description{
 The function creates an index. If the index already exists, the function
-will return an error.
+will throw an error.
 }

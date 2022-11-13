@@ -12,9 +12,9 @@ index_exists(conn, index)
 \item{index}{`character`, the name of the index}
 }
 \value{
-`integer` the response status code
+`TRUE` if the index exists
 }
 \description{
-This function checks if the specified index exists, in which case the
-status code of 200 is displayed.
+This function checks if the specified index exists. If it does not exist,
+an error is thrown.
 }
