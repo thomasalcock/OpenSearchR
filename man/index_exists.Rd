@@ -4,12 +4,43 @@
 \alias{index_exists}
 \title{Check if index exists}
 \usage{
-index_exists(conn, index)
+index_exists(
+  conn,
+  index,
+  allow_no_indices = TRUE,
+  expand_wildcard_settings = "open",
+  include_defaults = FALSE,
+  ignore_unavailable = FALSE,
+  local = FALSE
+)
 }
 \arguments{
 \item{conn}{`OpenSearchRConnection`, a connection object}
 
 \item{index}{`character`, the name of the index}
+
+\item{allow_no_indices}{`logical`, Whether to ignore wildcards that don’t match any indices.
+Default is `TRUE`.}
+
+\item{include_defaults}{`logical`, Whether to include default settings as part of the response.
+This parameter is useful for identifying the names and current values of settings you want to update.
+Default is `FALSE`}
+
+\item{ignore_unavailable, }{`logical`, If `TRUE`, OpenSearch does not search for missing or closed indices.
+Default is `FALSE`}
+
+\item{local}{`logical`, Whether to return information from only the local node instead of from the master node.
+Default is `FALSE`.}
+
+\item{expand_wildcards}{`character`, Expands wildcard expressions to different indices.
+Combine multiple values with commas. Available values are:
+\itemize{
+   \item{"all" (match all indices)}
+   \item{"open" (match open indices)}
+   \item{"closed" (match closed indices)}
+   \item{"hidden" (match hidden indices)}
+   \item{"none" (do not accept wildcard expressions)}
+}}
 }
 \value{
 `TRUE` if the index exists

@@ -5,12 +5,42 @@
 #'
 #' @param conn `OpenSearchRConnection`, a connection object
 #' @param index `character`, the name of the index
+#' @param allow_no_indices `logical`, Whether to ignore wildcards that don’t match any indices.
+#' Default is `TRUE`.
+#' @param expand_wildcards `character`, Expands wildcard expressions to different indices.
+#' Combine multiple values with commas. Available values are:
+#' \itemize{
+#'    \item{"all" (match all indices)}
+#'    \item{"open" (match open indices)}
+#'    \item{"closed" (match closed indices)}
+#'    \item{"hidden" (match hidden indices)}
+#'    \item{"none" (do not accept wildcard expressions)}
+#' }
+#  Default is "open".
+#' @param include_defaults `logical`, Whether to include default settings as part of the response.
+#' This parameter is useful for identifying the names and current values of settings you want to update.
+#' Default is `FALSE`
+#' @param ignore_unavailable, `logical`, If `TRUE`, OpenSearch does not search for missing or closed indices.
+#' Default is `FALSE`
+#' @param local `logical`, Whether to return information from only the local node instead of from the master node.
+#' Default is `FALSE`.
 #' @return `TRUE` if the index exists
 #' @importFrom httr HEAD authenticate
 #' @export
-index_exists <- function(conn, index) {
+index_exists <- function(conn,
+                         index,
+                         allow_no_indices = TRUE,
+                         expand_wildcard_settings = "open",
+                         include_defaults = FALSE,
+                         ignore_unavailable = FALSE,
+                         local = FALSE) {
 
-  # TODO: add url parameters as arguments
+  # TODO: check args
+  allow_no_indices <- convert_lgl_to_str(allow_no_indices)
+  include_defaults <- convert_lgl_to_str(include_defaults)
+  ignore_unavailable <- convert_lgl_to_str(ignore_unavailable)
+  local <- convert_lgl_to_str(local)
+
   response <- httr::HEAD(
     url = conn$host,
     httr::authenticate(
@@ -19,7 +49,14 @@ index_exists <- function(conn, index) {
       type = "basic"
     ),
     port = conn$port,
-    path = index
+    path = index,
+    query = list(
+      allow_no_indices = allow_no_indices,
+      expand_wildcard_settings = expand_wildcard_settings,
+      include_defaults = include_defaults,
+      ignore_unavailable = ignore_unavailable,
+      local = local
+    )
   )
   resp <- process_response(response)
   if(response$status %in% c(200, 201)) {
