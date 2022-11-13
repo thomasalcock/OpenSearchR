@@ -35,7 +35,20 @@ index_exists <- function(conn,
                          ignore_unavailable = FALSE,
                          local = FALSE) {
 
-  # TODO: check args
+  stopifnot("index must be NULL or a length 1 character" =
+              is.null(index) || (is.character(index) && length(index) == 1))
+  stopifnot("allow_no_indices must be a length 1 logical" =
+              is.logical(allow_no_indices) && length(allow_no_indices) == 1)
+  stopifnot("expand_wildcard_settings must be a length 1 character" =
+              is.character(expand_wildcard_settings) && length(expand_wildcard_settings) == 1 &&
+              expand_wildcard_settings %in% c("open", "all", "closed", "hidden", "none"))
+  stopifnot("include_defaults must be a length 1 logical" =
+              is.logical(expand_wildcard_settings) && length(expand_wildcard_settings) == 1)
+  stopifnot("ignore_unavailable must be a length 1 logical" =
+              is.logical(ignore_unavailable) && length(ignore_unavailable) == 1)
+  stopifnot("local must be a length 1 logical" =
+              is.logical(local) && length(local) == 1)
+
   allow_no_indices <- convert_lgl_to_str(allow_no_indices)
   include_defaults <- convert_lgl_to_str(include_defaults)
   ignore_unavailable <- convert_lgl_to_str(ignore_unavailable)
