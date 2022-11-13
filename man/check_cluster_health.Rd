@@ -25,27 +25,37 @@ check_cluster_health(
 
 \item{index}{`character`, the name of the index}
 
-\item{expand_wildcards}{`character`,}
+\item{expand_wildcards}{`character`, Expands wildcard expressions to concrete indexes.
+Combine multiple values with commas. Supported values are
+"all", "open", "closed", "hidden", and "none". Default is "open".}
 
-\item{level}{`character`}
+\item{level}{`character` The level of detail for returned health information.
+Supported values are "cluster", "indices", and "shards." Default is "cluster".}
 
-\item{local}{`logical`}
+\item{local}{`logical`, Whether to return information from the local node
+only instead of from the cluster manager node. Default is `FALSE`}
 
-\item{master_timeout}{`integer`}
+\item{master_timeout}{`integer`, The amount of time to wait for a connection to the cluster manager node.
+Default is 30 seconds.}
 
-\item{timeout}{`integer`}
+\item{timeout}{`integer`, The amount of time to wait for a response. If the timeout expires, the request fails.
+Default is 30 seconds.}
 
-\item{wait_for_active_shards}{`character`}
+\item{wait_for_active_shards}{`character`, Wait until the specified number of shards is active
+before returning a response. all for all shards. Default is 0.}
 
-\item{wait_for_nodes}{`character`}
+\item{wait_for_nodes}{`character`, Wait for N number of nodes. Use "12" for exact match, ">12" and "<12" for range.
+Default is "<12".}
 
-\item{wait_for_events}{`character`}
+\item{wait_for_events}{`character`, Wait until all currently queued events with the given priority are processed.
+Supported values are "immediate", "urgent", "high", "normal", "low", and "languid".}
 
-\item{wait_for_no_relocating_shards}{`logical`}
+\item{wait_for_no_relocating_shards}{`logical`, Whether to wait until there are no relocating shards in the cluster. Default is `FALSE`}
 
-\item{wait_for_no_initializing_shards}{`logical`}
+\item{wait_for_no_initializing_shards}{`logical`, Whether to wait until there are no initializing shards in the cluster. Default is `FALSE`}
 
-\item{wait_for_status}{`character`}
+\item{wait_for_status}{`character`, Wait until the cluster health reaches the specified status or better.
+Supported values are "green", "yellow", and "red". Default is "green".}
 }
 \value{
 `list`, the API response containing the status of the cluster
