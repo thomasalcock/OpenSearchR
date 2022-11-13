@@ -14,7 +14,7 @@ Suggests:
     devtools,
     renv,
     roxygen2,
-    testthat,
+    testthat (>= 3.0.0),
     usethis (>= 2.1.6)
 Remotes: 
     r-lib/usethis
@@ -24,3 +24,4 @@ Imports:
 RoxygenNote: 7.2.1
 Depends: 
     R (>= 2.10)
+Config/testthat/edition: 3
