@@ -2,13 +2,17 @@
 % Please edit documentation in R/utils.R
 \name{process_response}
 \alias{process_response}
-\title{Get the content from a http response}
+\title{Get the content from a `response` object}
 \usage{
 process_response(response)
 }
 \arguments{
-\item{response}{}
+\item{response}{`response`, API response}
+}
+\value{
+`list`, response content
 }
 \description{
-Get the content from a http response
+Tries to access the response content, throws a user-friendly
+error if something went wrong, i.e. if the response body is empty.
 }

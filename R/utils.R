@@ -5,9 +5,7 @@
 #'
 #' @param int `integer`, value to be converted
 #' @param unit `character`, unit of time
-#'
 #' @return `character`, the integer as a converted string
-#'
 convert_int_to_str <- function(int, unit = "s") {
   paste0(int, unit)
 }
@@ -19,47 +17,37 @@ convert_int_to_str <- function(int, unit = "s") {
 #' i.e. "false" instead of `FALSE`.
 #'
 #' @param lgl `logical`, value to be converted
-#'
 #' @return `character`, the logical as a converted string
-#'
 convert_lgl_to_str <- function(lgl) {
   ifelse(lgl, "true", "false")
 }
 
-#' Get the content from a http response
+#' Get the content from a `response` object
 #'
-#' @param response
+#' Tries to access the response content, throws a user-friendly
+#' error if something went wrong, i.e. if the response body is empty.
 #'
-#' @return
-#'
+#' @param response `response`, API response
+#' @return `list`, response content
 #' @importFrom httr content
-#'
-#' @examples
 process_response <- function(response) {
-  show_status_code(response)
   tryCatch({
     httr::content(response)
   },
   error = function(e) {
-    message("The response could not be processed")
+    stop("The response could not be processed")
   })
 }
 
-#' Title
+#' Get status code
 #'
-#' @param response
+#' Returns the status code of an API response
 #'
-#' @return
-#' @export
-#'
+#' @param response `response`, API response
+#' @return `integer`, status code
 #' @importFrom httr status_code
-#'
-#' @examples
 show_status_code <- function(response) {
   sc <- httr::status_code(response)
   message("Response returned with status code: ", sc)
   invisible(sc)
 }
-
-# TODO: write function to extract error cause from api response
-

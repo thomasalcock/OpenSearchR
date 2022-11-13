@@ -2,13 +2,16 @@
 % Please edit documentation in R/utils.R
 \name{show_status_code}
 \alias{show_status_code}
-\title{Title}
+\title{Get status code}
 \usage{
 show_status_code(response)
 }
 \arguments{
-\item{response}{}
+\item{response}{`response`, API response}
+}
+\value{
+`integer`, status code
 }
 \description{
-Title
+Returns the status code of an API response
 }
